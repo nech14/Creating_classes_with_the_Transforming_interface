@@ -80,7 +80,10 @@ class Square(): Movable, Figure(1), Transforming  {
     }
 
     override fun toString(): String {
-        return "Square($x, $y), w = $width"
+        var str: String = "angles:\n"
+        for (i in 0..3){
+            str += "$i (" + angles[i*2] + ", " + angles[i*2+1] + ") \n"
+        }
+        return "Square($x, $y), width = $width\n$str"
     }
-
 }
