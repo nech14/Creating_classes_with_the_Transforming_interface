@@ -19,17 +19,20 @@ fun main() {
     val tr3:Transforming = Square(0,0,4)
 
     tr1.resize(2)
-    println(tr1)
+    println("$tr1 \n")
     tr2.resize(4)
-    println(tr2)
+    println("$tr2 \n")
     tr3.resize(3)
     println("$tr3 \n")
 
 
     tr1.rotate(RotateDirection.CounterClockwise, 1, 1)
-    print(tr1)
+    println("$tr1 \n")
+
+    tr2.rotate(RotateDirection.CounterClockwise, 1, 0)
+    println("$tr2 \n")
 
     tr3.rotate(RotateDirection.CounterClockwise, 3, 2)
-    print(tr1)
+    println("$tr3 \n")
 }
 

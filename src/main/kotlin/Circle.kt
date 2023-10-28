@@ -1,4 +1,6 @@
 import kotlin.math.PI
+import kotlin.math.cos
+import kotlin.math.sin
 
 
 class Circle(var x: Int, var y: Int, var r:Int) : Figure(2), Movable, Transforming {
@@ -16,7 +18,18 @@ class Circle(var x: Int, var y: Int, var r:Int) : Figure(2), Movable, Transformi
     }
 
     override fun rotate(direction: RotateDirection, centerX: Int, centerY: Int){
-        return
+        when(direction){
+            RotateDirection.Clockwise -> {
+                val bufX = x
+                x = -(y-centerY) + centerX
+                y = bufX-centerX + centerY
+            }
+            RotateDirection.CounterClockwise -> {
+                val bufX = x
+                x = ((y-centerY.toFloat()) + centerX.toFloat()).toInt()
+                y = (-(bufX-centerX.toFloat()) + centerY.toFloat()).toInt()
+            }
+        }
     }
 
     override fun toString(): String {

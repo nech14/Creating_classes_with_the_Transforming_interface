@@ -65,32 +65,37 @@ class Rect() : Transforming, Movable, Figure(0) {
     override fun rotate(direction: RotateDirection, centerX: Int, centerY: Int, ) {
         val alpha:Float = 90F
         var bufX:Float
-        if(direction == RotateDirection.Clockwise){
-            for (i in 0..3){
-                bufX = angles[i*2]
-                angles[2*i] = -(angles[2*i+1]-centerY) + centerX
-                angles[2*i+1] = angles[2*i]-centerX + centerY
+        when (direction) {
+            RotateDirection.Clockwise -> {
+                for (i in 0..3){
+                    bufX = angles[i*2]
+                    angles[2*i] = -(angles[2*i+1]-centerY) + centerX
+                    angles[2*i+1] = angles[2*i]-centerX + centerY
+                }
             }
-        }else if(direction == RotateDirection.CounterClockwise){
-            for (i in 0..3){
-                bufX = angles[i*2]
-                angles[2*i] = (angles[2*i+1]-centerY.toFloat()) + centerX.toFloat()
-                angles[2*i+1] = -(bufX-centerX.toFloat()) + centerY.toFloat()
+            RotateDirection.CounterClockwise -> {
+                for (i in 0..3){
+                    bufX = angles[i*2]
+                    angles[2*i] = (angles[2*i+1]-centerY.toFloat()) + centerX.toFloat()
+                    angles[2*i+1] = -(bufX-centerX.toFloat()) + centerY.toFloat()
+                }
             }
-        } else{
-            for (i in 0..3){
-                bufX = angles[i*2]
-                angles[2*i] =  (angles[2*i]-centerX) * cos(alpha) + (angles[2*i+1]-centerY) * sin(alpha) + centerX
-                angles[2*i+1] = (angles[2*i+1]-centerY) * cos(alpha) + (angles[2*i]-centerX) * sin(alpha) + centerY
+            else -> {
+                for (i in 0..3){
+                    bufX = angles[i*2]
+                    angles[2*i] =  (angles[2*i]-centerX) * cos(alpha) + (angles[2*i+1]-centerY) * sin(alpha) + centerX
+                    angles[2*i+1] = (angles[2*i+1]-centerY) * cos(alpha) + (angles[2*i]-centerX) * sin(alpha) + centerY
+                }
             }
         }
     }
 
     override fun toString(): String {
         var str: String = "angles:\n"
-        for (i in 0..3){
+        for (i in 0..2){
             str += "$i (" + angles[i*2] + ", " + angles[i*2+1] + ") \n"
         }
+        str += "$3 (" + angles[3*2] + ", " + angles[3*2+1] + ")"
         return "Rect($x, $y), width = $width, height = $height\n$str"
     }
 
