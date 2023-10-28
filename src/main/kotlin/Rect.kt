@@ -11,9 +11,10 @@ class Rect() : Transforming, Movable, Figure(0) {
     var height: Int = 0
     var color: Int = -1 // при объявлении каждое поле нужно инициализировать
 
-    var angles:Array<Float> = Array(8) { 0f }
+    var angles: Array<Float> = Array(8) { 0f }
 
     lateinit var name: String // значение на момент определения неизвестно (только для объектных типов)
+
     // дополнительный конструктор вызывает основной
     constructor(rect: Rect) : this(rect.x, rect.y, rect.width, rect.height)
 
@@ -28,17 +29,17 @@ class Rect() : Transforming, Movable, Figure(0) {
 
 
     private fun findAngles() {
-        angles[0] = (x.toFloat() + width.toFloat()/2)
-        angles[1] = (y.toFloat() + height.toFloat()/2)
+        angles[0] = (x.toFloat() + width.toFloat() / 2)
+        angles[1] = (y.toFloat() + height.toFloat() / 2)
 
-        angles[2] = (x.toFloat() + width.toFloat()/2)
-        angles[3] = (y.toFloat() - height.toFloat()/2)
+        angles[2] = (x.toFloat() + width.toFloat() / 2)
+        angles[3] = (y.toFloat() - height.toFloat() / 2)
 
-        angles[4] = (x.toFloat() - width.toFloat()/2)
-        angles[5] = (y.toFloat() + height.toFloat()/2)
+        angles[4] = (x.toFloat() - width.toFloat() / 2)
+        angles[5] = (y.toFloat() + height.toFloat() / 2)
 
-        angles[6] = (x.toFloat() - width.toFloat()/2)
-        angles[7] = (y.toFloat() - height.toFloat()/2)
+        angles[6] = (x.toFloat() - width.toFloat() / 2)
+        angles[7] = (y.toFloat() - height.toFloat() / 2)
     }
 
     // нужно явно указывать, что вы переопределяете метод
@@ -48,7 +49,7 @@ class Rect() : Transforming, Movable, Figure(0) {
 
     // для каждого класса area() определяется по-своему
     override fun area(): Float {
-        return (width*height).toFloat() // требуется явное приведение к вещественному числу
+        return (width * height).toFloat() // требуется явное приведение к вещественному числу
     }
 
 
@@ -56,35 +57,39 @@ class Rect() : Transforming, Movable, Figure(0) {
         width *= zoom
         height *= zoom
 
-        for (i in 0..3){
-            angles[i*2] = x + (x - angles[i*2])*zoom
-            angles[i*2+1] = y + (y - angles[i*2+1])*zoom
+        for (i in 0..3) {
+            angles[i * 2] = x + (x - angles[i * 2]) * zoom
+            angles[i * 2 + 1] = y + (y - angles[i * 2 + 1]) * zoom
         }
     }
 
-    override fun rotate(direction: RotateDirection, centerX: Int, centerY: Int, ) {
-        val alpha:Float = 90F
-        var bufX:Float
+    override fun rotate(direction: RotateDirection, centerX: Int, centerY: Int) {
+        val alpha: Float = 90F
+        var bufX: Float
         when (direction) {
             RotateDirection.Clockwise -> {
-                for (i in 0..3){
-                    bufX = angles[i*2]
-                    angles[2*i] = -(angles[2*i+1]-centerY) + centerX
-                    angles[2*i+1] = angles[2*i]-centerX + centerY
+                for (i in 0..3) {
+                    bufX = angles[i * 2]
+                    angles[2 * i] = -(angles[2 * i + 1] - centerY) + centerX
+                    angles[2 * i + 1] = angles[2 * i] - centerX + centerY
                 }
             }
+
             RotateDirection.CounterClockwise -> {
-                for (i in 0..3){
-                    bufX = angles[i*2]
-                    angles[2*i] = (angles[2*i+1]-centerY.toFloat()) + centerX.toFloat()
-                    angles[2*i+1] = -(bufX-centerX.toFloat()) + centerY.toFloat()
+                for (i in 0..3) {
+                    bufX = angles[i * 2]
+                    angles[2 * i] = (angles[2 * i + 1] - centerY.toFloat()) + centerX.toFloat()
+                    angles[2 * i + 1] = -(bufX - centerX.toFloat()) + centerY.toFloat()
                 }
             }
+
             else -> {
-                for (i in 0..3){
-                    bufX = angles[i*2]
-                    angles[2*i] =  (angles[2*i]-centerX) * cos(alpha) + (angles[2*i+1]-centerY) * sin(alpha) + centerX
-                    angles[2*i+1] = (angles[2*i+1]-centerY) * cos(alpha) + (angles[2*i]-centerX) * sin(alpha) + centerY
+                for (i in 0..3) {
+                    bufX = angles[i * 2]
+                    angles[2 * i] =
+                        (angles[2 * i] - centerX) * cos(alpha) + (angles[2 * i + 1] - centerY) * sin(alpha) + centerX
+                    angles[2 * i + 1] =
+                        (angles[2 * i + 1] - centerY) * cos(alpha) + (angles[2 * i] - centerX) * sin(alpha) + centerY
                 }
             }
         }
@@ -92,13 +97,12 @@ class Rect() : Transforming, Movable, Figure(0) {
 
     override fun toString(): String {
         var str: String = "angles:\n"
-        for (i in 0..2){
-            str += "$i (" + angles[i*2] + ", " + angles[i*2+1] + ") \n"
+        for (i in 0..2) {
+            str += "$i (" + angles[i * 2] + ", " + angles[i * 2 + 1] + ") \n"
         }
-        str += "$3 (" + angles[3*2] + ", " + angles[3*2+1] + ")"
+        str += "$3 (" + angles[3 * 2] + ", " + angles[3 * 2 + 1] + ")"
         return "Rect($x, $y), width = $width, height = $height\n$str"
     }
-
 
 
 }

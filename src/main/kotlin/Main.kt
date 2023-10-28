@@ -1,11 +1,9 @@
-
-
 fun main() {
 
-    val movable: Movable = Rect(0,0,1,1)
-    movable.move(1,1)
-    val f: Figure = Rect(0,0,2,3)
-    val f2: Figure = Circle(0, 0 , 5)
+    val movable: Movable = Rect(0, 0, 1, 1)
+    movable.move(1, 1)
+    val f: Figure = Rect(0, 0, 2, 3)
+    val f2: Figure = Circle(0, 0, 5)
     val f3: Figure = Square(2, 3, 7)
 
 
@@ -14,9 +12,9 @@ fun main() {
     println("Square area: ${f3.area()} \n")
 
 
-    val tr1:Transforming = Rect(0,0,2,3)
-    val tr2:Transforming = Circle(0, 0 , 5)
-    val tr3:Transforming = Square(0,0,4)
+    val tr1: Transforming = Rect(0, 0, 2, 3)
+    val tr2: Transforming = Circle(0, 0, 5)
+    val tr3: Transforming = Square(0, 0, 4)
 
     tr1.resize(2)
     println("$tr1 \n")

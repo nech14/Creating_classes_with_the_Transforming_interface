@@ -3,10 +3,10 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 
-class Circle(var x: Int, var y: Int, var r:Int) : Figure(2), Movable, Transforming {
+class Circle(var x: Int, var y: Int, var r: Int) : Figure(2), Movable, Transforming {
 
     override fun area(): Float {
-        return  (PI* r * r).toFloat();
+        return (PI * r * r).toFloat();
     }
 
     override fun move(dx: Int, dy: Int) {
@@ -17,17 +17,18 @@ class Circle(var x: Int, var y: Int, var r:Int) : Figure(2), Movable, Transformi
         r *= zoom
     }
 
-    override fun rotate(direction: RotateDirection, centerX: Int, centerY: Int){
-        when(direction){
+    override fun rotate(direction: RotateDirection, centerX: Int, centerY: Int) {
+        when (direction) {
             RotateDirection.Clockwise -> {
                 val bufX = x
-                x = -(y-centerY) + centerX
-                y = bufX-centerX + centerY
+                x = -(y - centerY) + centerX
+                y = bufX - centerX + centerY
             }
+
             RotateDirection.CounterClockwise -> {
                 val bufX = x
-                x = ((y-centerY.toFloat()) + centerX.toFloat()).toInt()
-                y = (-(bufX-centerX.toFloat()) + centerY.toFloat()).toInt()
+                x = ((y - centerY.toFloat()) + centerX.toFloat()).toInt()
+                y = (-(bufX - centerX.toFloat()) + centerY.toFloat()).toInt()
             }
         }
     }
