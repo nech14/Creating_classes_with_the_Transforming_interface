@@ -1,36 +1,30 @@
 fun main() {
 
-    val movable: Movable = Rect(0, 0, 1, 1)
-    movable.move(1, 1)
-    val f: Figure = Rect(0, 0, 2, 3)
-    val f2: Figure = Circle(0, 0, 5)
-    val f3: Figure = Square(2, 3, 7)
+    val array = arrayOf(
+        Rect(0, 0, 2, 3),
+        Circle(0, 0, 5),
+        Square(2, 3, 7)
+    )
+    println("We create:")
+    println("${array[0]}\n")
+    println("${array[1]}\n")
+    println("${array[2]}\n\n")
 
+    println("Rect area: ${array[0].area()}")
+    println("Rect area: ${array[1].area()}")
+    println("Rect area: ${array[2].area()}\n")
 
-    println("Rect area: ${f.area()}")
-    println("Circle area: ${f2.area()}")
-    println("Square area: ${f3.area()} \n")
+    array[0].resize(2)
+    println("zoom 2x:\n${array[0]} \n")
+    array[1].resize(4)
+    println("zoom 4x:\n${array[1]} \n")
+    array[2].resize(3)
+    println("zoom 3x:\n${array[2]} \n")
 
-
-    val tr1: Transforming = Rect(0, 0, 2, 3)
-    val tr2: Transforming = Circle(0, 0, 5)
-    val tr3: Transforming = Square(0, 0, 4)
-
-    tr1.resize(2)
-    println("$tr1 \n")
-    tr2.resize(4)
-    println("$tr2 \n")
-    tr3.resize(3)
-    println("$tr3 \n")
-
-
-    tr1.rotate(RotateDirection.CounterClockwise, 1, 1)
-    println("$tr1 \n")
-
-    tr2.rotate(RotateDirection.CounterClockwise, 1, 0)
-    println("$tr2 \n")
-
-    tr3.rotate(RotateDirection.CounterClockwise, 3, 2)
-    println("$tr3 \n")
+    array[0].rotate(RotateDirection.CounterClockwise, 1, 1)
+    println("rotate on CounterClockwise from (1;1):\n${array[0]} \n")
+    array[1].rotate(RotateDirection.Clockwise, 1, 0)
+    println("rotate on Clockwise from (1;0):\n${array[1]} \n")
+    array[2].rotate(RotateDirection.CounterClockwise, 3, 2)
+    println("rotate on CounterClockwise from (3;2):\n${array[2]} \n")
 }
-

@@ -1,12 +1,10 @@
 import kotlin.math.PI
-import kotlin.math.cos
-import kotlin.math.sin
 
 
-class Circle(var x: Int, var y: Int, var r: Int) : Figure(2), Movable, Transforming {
+class Circle(private var x: Int, private var y: Int, private var r: Int) : Figure(2), Movable, Transforming {
 
     override fun area(): Float {
-        return (PI * r * r).toFloat();
+        return (PI * r * r).toFloat()
     }
 
     override fun move(dx: Int, dy: Int) {
