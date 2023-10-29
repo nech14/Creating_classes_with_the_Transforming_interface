@@ -1,9 +1,7 @@
 fun main() {
 
     val array = arrayOf(
-        Rect(0, 0, 2, 3),
-        Circle(0, 0, 5),
-        Square(2, 3, 7)
+        Rect(0, 0, 2, 3), Circle(0, 0, 5), Square(2, 3, 7)
     )
     println("We create:")
     println("${array[0]}\n")
